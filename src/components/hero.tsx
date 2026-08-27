@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDown, ArrowUpRight, MapPin, Sparkles } from "lucide-react";
+import { ArrowUpRight, MapPin, Sparkles } from "lucide-react";
 import { profile, stats } from "@/lib/profile";
 import { ActionLink } from "./ui/action-link";
 
@@ -49,21 +49,21 @@ export function Hero() {
                 Senior Manager for Cloud, Data &amp; AI Engineering at{" "}
                 <span className="text-text">PwC Canada</span>. Formerly data
                 engineering lead at <span className="text-text">Google</span>. Twelve years
-                moving mission-critical estates onto GCP, AWS and Azure — with the
+                moving mission-critical estates onto GCP, AWS and Azure, with the
                 certifications to match.
               </p>
             </motion.div>
 
             <motion.div {...rise(0.42)} className="mt-10 flex flex-wrap items-center gap-3">
-              <ActionLink href="/#twin" variant="signal">
+              <ActionLink href="/twin" variant="signal">
                 <Sparkles className="h-3.5 w-3.5" />
                 Ask my digital twin
               </ActionLink>
-              <ActionLink href="/#journey" variant="ghost">
+              <ActionLink href="/journey" variant="ghost">
                 Career journey
-                <ArrowDown className="h-3.5 w-3.5" />
+                <ArrowUpRight className="h-3.5 w-3.5" />
               </ActionLink>
-              <ActionLink href="/#contact" variant="ghost">
+              <ActionLink href="/contact" variant="ghost">
                 Get in touch
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </ActionLink>

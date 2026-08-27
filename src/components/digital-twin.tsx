@@ -17,7 +17,7 @@ const suggestions = [
   "What kind of role are you looking for?",
 ];
 
-const greeting = `Hi, I'm Ikenna's digital twin. Ask me anything about his twelve years in data engineering — Google, PwC, the hyperscaler certifications, or the lakehouse and MLOps work.`;
+const greeting = `Hi, I'm Ikenna's digital twin. Ask me anything about his twelve years in data engineering: Google, PwC, the hyperscaler certifications, or the lakehouse and MLOps work.`;
 
 const BULLET = /^([-*•]|\d+[.)])\s+/;
 
@@ -122,7 +122,7 @@ export function DigitalTwin() {
   }
 
   return (
-    <section id="twin" className="section-y relative scroll-mt-20">
+    <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-36">
       <div className="shell">
         <SectionHeading
           index="04"

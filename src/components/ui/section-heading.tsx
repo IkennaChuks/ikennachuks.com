@@ -8,6 +8,7 @@ type SectionHeadingProps = {
   lede?: string;
   align?: "left" | "center";
   className?: string;
+  as?: "h1" | "h2";
 };
 
 export function SectionHeading({
@@ -17,7 +18,9 @@ export function SectionHeading({
   lede,
   align = "left",
   className,
+  as = "h1",
 }: SectionHeadingProps) {
+  const Title = as;
   return (
     <div
       className={cn(
@@ -40,7 +43,7 @@ export function SectionHeading({
       </Reveal>
 
       <Reveal delay={0.06}>
-        <h2 className="display-lg mt-5 text-text">{title}</h2>
+        <Title className="display-lg mt-5 text-text">{title}</Title>
       </Reveal>
 
       {lede ? (

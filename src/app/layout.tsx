@@ -28,8 +28,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ikennachuks.com"),
   title: {
-    default: `${profile.name}, ${profile.credential} — Cloud, Data & AI Engineering`,
-    template: `%s — ${profile.name}`,
+    default: `${profile.name}, ${profile.credential} - Cloud, Data & AI Engineering`,
+    template: `%s - ${profile.name}`,
   },
   description:
     "Senior Manager for Cloud, Data & AI Engineering at PwC Canada. Ex-Google data engineering lead with 12+ years designing lakehouse, streaming and MLOps platforms across GCP, AWS and Azure.",

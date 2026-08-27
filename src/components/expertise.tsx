@@ -23,7 +23,7 @@ const icons: Record<Capability["icon"], LucideIcon> = {
 
 export function Expertise() {
   return (
-    <section id="expertise" className="section-y relative scroll-mt-20">
+    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24">
       <div className="shell">
         <SectionHeading
           index="02"

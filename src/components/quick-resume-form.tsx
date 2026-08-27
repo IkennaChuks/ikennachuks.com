@@ -385,7 +385,7 @@ export function QuickResumeForm() {
       ) : (
         <p className="print:hidden flex items-start gap-2 text-sm text-muted">
           <Link2 className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
-          Drafts stay in this browser tab. Nothing is saved. Dates, employers and certifications come from the CV on this site — gaps stay visible in the match check.
+          Drafts stay in this browser tab. Nothing is saved. Dates, employers and certifications come from the CV on this site. Gaps stay visible in the match check.
         </p>
       )}
     </div>

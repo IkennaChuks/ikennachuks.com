@@ -24,7 +24,7 @@ const principles = [
 
 export function About() {
   return (
-    <section id="about" className="section-y relative scroll-mt-20">
+    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24">
       <div className="shell">
         <SectionHeading
           index="01"
@@ -49,7 +49,7 @@ export function About() {
                 <Quote className="h-6 w-6 text-signal" />
                 <blockquote className="mt-5 font-display text-xl leading-snug font-medium text-text sm:text-2xl">
                   Anyone can move data. The work is making an organisation agree on
-                  what it means — and then keeping that true at scale.
+                  what it means, and then keeping that true at scale.
                 </blockquote>
               </figure>
             </Reveal>

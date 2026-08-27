@@ -9,7 +9,7 @@ export default function NotFound() {
         This page does not exist.
       </h1>
       <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
-        The link may be out of date. Everything worth reading is on the home page.
+        The link may be out of date. Try About, Journey or Contact from the menu.
       </p>
       <div className="mt-10">
         <ActionLink href="/" variant="signal">

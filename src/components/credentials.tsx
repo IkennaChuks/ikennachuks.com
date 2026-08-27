@@ -17,12 +17,13 @@ export function Credentials() {
   const groups = groupedCerts();
 
   return (
-    <section id="credentials" className="section-y relative scroll-mt-20">
+    <section className="relative pb-24 lg:pb-36">
       <div className="shell">
         <SectionHeading
           index="05"
           kicker="Credentials"
           title="Certified across the stack, formally trained for AI."
+          as="h2"
         />
 
         <div className="mt-16 grid gap-14 lg:grid-cols-12 lg:gap-16">

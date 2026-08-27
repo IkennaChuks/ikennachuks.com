@@ -32,7 +32,7 @@ const channels = [
 
 export function Contact() {
   return (
-    <section id="contact" className="section-y relative scroll-mt-20">
+    <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-36">
       <div className="shell">
         <div className="panel relative overflow-hidden p-8 sm:p-14 lg:p-20">
           <div
@@ -54,9 +54,9 @@ export function Contact() {
                 </div>
               </Reveal>
               <Reveal delay={0.06}>
-                <h2 className="display-lg mt-5 text-text">
+                <h1 className="display-lg mt-5 text-text">
                   Got a data or AI problem worth solving?
-                </h2>
+                </h1>
               </Reveal>
               <Reveal delay={0.12}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">

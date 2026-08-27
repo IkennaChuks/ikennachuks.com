@@ -8,7 +8,7 @@ import { SpotlightCard } from "@/components/ui/spotlight-card";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Case studies on cloud data platforms, streaming architecture and agentic AI systems — currently in preparation.",
+    "Case studies on cloud data platforms, streaming architecture and agentic AI systems, currently in preparation.",
 };
 
 const planned = [
@@ -69,7 +69,7 @@ export default function PortfolioPage() {
                 <p className="mt-8 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
                   Much of what I build sits behind NDAs and inside regulated
                   environments. I am writing up the parts I can share as proper case
-                  studies — architecture decisions, trade-offs, and what I would do
+                  studies: architecture decisions, trade-offs, and what I would do
                   differently.
                 </p>
               </Reveal>

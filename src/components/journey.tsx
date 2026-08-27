@@ -43,13 +43,13 @@ function Rail({ current, last }: { current?: boolean; last: boolean }) {
 
 export function Journey() {
   return (
-    <section id="journey" className="section-y relative scroll-mt-20">
+    <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-36">
       <div className="shell">
         <SectionHeading
           index="03"
           kicker="Career journey"
           title="Twelve years, four countries, one throughline."
-          lede="From data analyst to senior manager — banking, betting, commerce, big tech, health tech and consulting. Every step added a layer to how I build."
+          lede="From data analyst to senior manager across banking, betting, commerce, big tech, health tech and consulting. Every step added a layer to how I build."
         />
 
         <ol className="mt-16">

@@ -8,20 +8,10 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/lib/profile";
 import { cn } from "@/lib/cn";
 
-const sectionIds = [
-  "about",
-  "expertise",
-  "journey",
-  "twin",
-  "credentials",
-  "contact",
-];
-
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -29,38 +19,6 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    const ratios = new Map<string, number>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
-        }
-        let best = "";
-        let bestRatio = 0;
-        for (const [id, ratio] of ratios) {
-          if (ratio > bestRatio) {
-            best = id;
-            bestRatio = ratio;
-          }
-        }
-        setActive(best);
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.2, 0.5, 1] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => {
-      observer.disconnect();
-      setActive("");
-    };
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -100,8 +58,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-1 xl:flex">
           {navLinks.map((link) => {
-            const target = link.href.replace(/^\/#?/, "");
-            const isActive = pathname === link.href || (target !== "" && active === target);
+            const isActive = pathname === link.href;
 
             return (
               <Link
@@ -127,7 +84,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/#contact"
+            href="/contact"
             className="hidden items-center gap-2 rounded-lg border border-line bg-card px-5 py-2.5 font-mono text-[0.7rem] tracking-[0.16em] whitespace-nowrap uppercase transition-all duration-300 hover:border-signal/50 hover:bg-tint hover:text-signal sm:inline-flex"
           >
             Let&apos;s talk

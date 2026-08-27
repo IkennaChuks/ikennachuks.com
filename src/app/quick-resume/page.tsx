@@ -37,7 +37,7 @@ export default function QuickResumePage() {
           <Reveal delay={0.12}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               Drop in a posting URL or the full description. The draft is written from
-              the same CV as this site — real roles, dates and certifications, rewritten
+              the same CV as this site: real roles, dates and certifications, rewritten
               so the posting&apos;s checklist is covered without inventing experience.
             </p>
           </Reveal>

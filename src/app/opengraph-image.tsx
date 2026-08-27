@@ -3,7 +3,7 @@ import { profile } from "@/lib/profile";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = `${profile.name}, ${profile.credential} — Cloud, Data & AI Engineering`;
+export const alt = `${profile.name}, ${profile.credential} - Cloud, Data & AI Engineering`;
 
 export default function OpengraphImage() {
   return new ImageResponse(

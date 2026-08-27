@@ -2,7 +2,7 @@ export const profile = {
   name: "Ikenna Chuks Okolo",
   credential: "MSc",
   initials: "IO",
-  role: "Senior Manager — Cloud, Data & AI Engineering",
+  role: "Senior Manager, Cloud, Data & AI Engineering",
   company: "PwC Canada",
   location: "Edmonton, Alberta, Canada",
   tagline: "I build the data and AI platforms that enterprises bet on.",
@@ -17,7 +17,7 @@ export const profile = {
 
 export const summary = [
   "Over a decade designing and deploying enterprise data estates across GCP, AWS and Azure. As a former Google senior engineer and now a PwC Senior Manager, I lead the migration of mission-critical workloads into the cloud with a focus on 99.99% reliability, security compliance and production-grade MLOps.",
-  "I move fluently across real-time streaming, lakehouse architecture and infrastructure-as-code — Dataflow, Pub/Sub, Kinesis, Databricks, Terraform, Kubernetes — with deep roots in Python, Java, Scala and SQL. What I care about is the part most teams skip: turning messy, contested, high-volume data into systems that stakeholders actually trust.",
+  "I move fluently across real-time streaming, lakehouse architecture and infrastructure-as-code: Dataflow, Pub/Sub, Kinesis, Databricks, Terraform and Kubernetes, with deep roots in Python, Java, Scala and SQL. What I care about is the part most teams skip: turning messy, contested, high-volume data into systems that stakeholders actually trust.",
   "Today I lead cloud, data and AI engineering at PwC Canada, translating hard technical strategy into delivery that clears audit, scales, and holds up in production.",
 ] as const;
 
@@ -112,7 +112,7 @@ export const capabilities: readonly Capability[] = [
   {
     title: "Cloud Data Platforms",
     icon: "cloud",
-    body: "Architecture and build-out across all three hyperscalers — lakehouse foundations, governed warehouses, and the plumbing that keeps them cheap and fast.",
+    body: "Architecture and build-out across all three hyperscalers: lakehouse foundations, governed warehouses, and the plumbing that keeps them cheap and fast.",
     tags: ["GCP", "AWS", "Azure", "Databricks"],
   },
   {
@@ -124,7 +124,7 @@ export const capabilities: readonly Capability[] = [
   {
     title: "Agentic AI & MLOps",
     icon: "sparkles",
-    body: "Production ML and LLM systems on enterprise data — feature stores, Vertex AI endpoints, evaluation, guardrails and the CI/CD that makes them shippable.",
+    body: "Production ML and LLM systems on enterprise data: feature stores, Vertex AI endpoints, evaluation, guardrails and the CI/CD that makes them shippable.",
     tags: ["Vertex AI", "Agents", "RAG", "MLOps"],
   },
   {
@@ -136,7 +136,7 @@ export const capabilities: readonly Capability[] = [
   {
     title: "Platform Engineering",
     icon: "chart",
-    body: "Infrastructure-as-code, CI/CD and cost control — Terraform, Kubernetes, Cloud Build and Composer — so platforms stay auditable and cheap in production.",
+    body: "Infrastructure-as-code, CI/CD and cost control with Terraform, Kubernetes, Cloud Build and Composer, so platforms stay auditable and cheap in production.",
     tags: ["Terraform", "Kubernetes", "CI/CD", "FinOps"],
   },
   {
@@ -164,12 +164,12 @@ export type Position = {
 export const experience: readonly Position[] = [
   {
     company: "PwC Canada",
-    span: "2026 — Present",
+    span: "2026 - Present",
     current: true,
     roles: [
       {
-        title: "Senior Manager — Cloud, Data & AI Engineering",
-        period: "March 2026 — Present",
+        title: "Senior Manager, Cloud, Data & AI Engineering",
+        period: "March 2026 - Present",
         location: "Edmonton, Alberta",
       },
     ],
@@ -186,7 +186,7 @@ export const experience: readonly Position[] = [
     roles: [
       {
         title: "Principal Data Engineer",
-        period: "January 2026 — March 2026",
+        period: "January 2026 - March 2026",
         location: "Edmonton, Alberta",
       },
     ],
@@ -199,28 +199,28 @@ export const experience: readonly Position[] = [
   },
   {
     company: "MedWatch Technologies",
-    span: "2025 — 2026",
+    span: "2025 - 2026",
     roles: [
       {
         title: "Manager, Data Engineering",
-        period: "January 2025 — February 2026",
+        period: "January 2025 - February 2026",
         location: "Edmonton, Alberta",
       },
     ],
     highlights: [
       "Set the architectural vision for a HIPAA-compliant GCP lakehouse unifying wearable biosensing telemetry with clinical EHR data.",
       "Directed Pub/Sub and Dataflow streaming for multimodal biosignals with sub-second processing for real-time metabolic alerts.",
-      "Built the MLOps foundation for non-invasive glucose models — feature stores, quality checks and Vertex AI CI/CD.",
+      "Built the MLOps foundation for non-invasive glucose models: feature stores, quality checks and Vertex AI CI/CD.",
       "Instituted zero-trust security and encryption across GCP, with HIPAA, GDPR and FDA-ready data provenance, while mentoring cross-functional engineering squads.",
     ],
   },
   {
     company: "Deloitte",
-    span: "2025 — 2026",
+    span: "2025 - 2026",
     roles: [
       {
         title: "Senior Data Engineer",
-        period: "November 2025 — February 2026",
+        period: "November 2025 - February 2026",
         location: "Edmonton, Alberta",
       },
     ],
@@ -236,7 +236,7 @@ export const experience: readonly Position[] = [
     roles: [
       {
         title: "Senior Data Engineer",
-        period: "February 2025 — August 2025",
+        period: "February 2025 - August 2025",
         location: "Edmonton, Alberta",
       },
     ],
@@ -249,11 +249,11 @@ export const experience: readonly Position[] = [
   },
   {
     company: "Government of Alberta",
-    span: "2024 — 2025",
+    span: "2024 - 2025",
     roles: [
       {
         title: "Software Data Engineer",
-        period: "December 2024 — February 2025",
+        period: "December 2024 - February 2025",
         location: "Edmonton, Alberta",
       },
     ],
@@ -264,21 +264,21 @@ export const experience: readonly Position[] = [
   },
   {
     company: "Google",
-    span: "2021 — 2024",
+    span: "2021 - 2024",
     roles: [
       {
         title: "Data Engineering Lead",
-        period: "February 2023 — December 2024",
+        period: "February 2023 - December 2024",
         location: "Waterloo, Canada",
       },
       {
         title: "Senior Data Engineer",
-        period: "September 2021 — January 2023",
+        period: "September 2021 - January 2023",
         location: "Warsaw, Poland",
       },
     ],
     highlights: [
-      "Three years and four months at Google across Warsaw and Waterloo. Named Best Engineer — Warsaw in 2024, with more than 25 peer and leadership awards.",
+      "Three years and four months at Google across Warsaw and Waterloo. Named Best Engineer, Warsaw in 2024, with more than 25 peer and leadership awards.",
       "As Data Engineering Lead, directed senior engineers on GCP data platforms and oversaw multi-million-dollar cloud migrations for Fortune 500 customers into BigQuery and Cloud Storage lakehouses.",
       "Designed Dataflow and Pub/Sub pipelines processing billions of daily events, and optimized BigQuery partitioning, clustering and slot management for latency and cost.",
       "Standardized Terraform and Cloud Composer blueprints with data quality, observability and RBAC. Built a GCS and BigQuery inventory tool that helped decommission unused resources and cut GCP spend by 30% in three months.",
@@ -290,7 +290,7 @@ export const experience: readonly Position[] = [
     roles: [
       {
         title: "Engineering Manager, Data Analytics",
-        period: "January 2021 — September 2021",
+        period: "January 2021 - September 2021",
       },
     ],
     highlights: [
@@ -302,15 +302,15 @@ export const experience: readonly Position[] = [
   },
   {
     company: "BetKing",
-    span: "2019 — 2021",
+    span: "2019 - 2021",
     roles: [
       {
         title: "Manager, Data Engineering",
-        period: "July 2020 — January 2021",
+        period: "July 2020 - January 2021",
       },
       {
         title: "Data Engineer",
-        period: "August 2019 — May 2020",
+        period: "August 2019 - May 2020",
         location: "London Area, United Kingdom",
       },
     ],
@@ -323,19 +323,19 @@ export const experience: readonly Position[] = [
   },
   {
     company: "Sterling Bank Plc",
-    span: "2017 — 2019",
+    span: "2017 - 2019",
     roles: [
       {
         title: "Data Engineer",
-        period: "July 2018 — August 2019",
+        period: "July 2018 - August 2019",
       },
       {
         title: "Business Intelligence Developer",
-        period: "January 2018 — July 2018",
+        period: "January 2018 - July 2018",
       },
       {
         title: "Application Support Engineer",
-        period: "February 2017 — December 2017",
+        period: "February 2017 - December 2017",
       },
     ],
     highlights: [
@@ -347,11 +347,11 @@ export const experience: readonly Position[] = [
   },
   {
     company: "CrispTV",
-    span: "2014 — 2017",
+    span: "2014 - 2017",
     roles: [
       {
         title: "Data Analyst",
-        period: "November 2014 — January 2017",
+        period: "November 2014 - January 2017",
       },
     ],
     highlights: [
@@ -376,10 +376,10 @@ export const certifications: readonly Certification[] = [
   { name: "Google Cloud Certified Cloud Digital Leader", issuer: "Google Cloud" },
   { name: "Google Cloud Certified Generative AI Leader", issuer: "Google Cloud" },
   { name: "AWS Certified Data Engineer", issuer: "Amazon Web Services" },
-  { name: "AWS Certified DevOps Engineer – Professional", issuer: "Amazon Web Services" },
+  { name: "AWS Certified DevOps Engineer - Professional", issuer: "Amazon Web Services" },
   { name: "AWS Certified Solutions Architect", issuer: "Amazon Web Services" },
   { name: "AWS Certified Developer", issuer: "Amazon Web Services" },
-  { name: "AWS Certified Database – Specialty", issuer: "Amazon Web Services" },
+  { name: "AWS Certified Database - Specialty", issuer: "Amazon Web Services" },
   { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services" },
   { name: "MCSE: Data Management and Analytics", issuer: "Microsoft" },
   { name: "MCSA: SQL 2016 Database Development", issuer: "Microsoft" },
@@ -407,11 +407,11 @@ export const education = [
 ] as const;
 
 export const navLinks = [
-  { href: "/#about", label: "About" },
-  { href: "/#expertise", label: "Expertise" },
-  { href: "/#journey", label: "Journey" },
-  { href: "/#twin", label: "Digital Twin" },
+  { href: "/about", label: "About" },
+  { href: "/expertise", label: "Expertise" },
+  { href: "/journey", label: "Journey" },
+  { href: "/twin", label: "Digital Twin" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/quick-resume", label: "Quick Resume" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ] as const;

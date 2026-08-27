@@ -1,5 +1,3 @@
-import { Reveal } from "./ui/reveal";
-
 const companies = [
   "Google",
   "PwC Canada",
@@ -12,21 +10,32 @@ const companies = [
 ];
 
 export function CompanyBand() {
+  const track = [...companies, ...companies, ...companies, ...companies];
+  const items = [...track, ...track];
+
   return (
     <section id="companies" className="border-y border-line bg-card/60">
-      <div className="shell py-12 lg:py-14">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
-          <Reveal>
-            <p className="kicker shrink-0 lg:max-w-32">Built at</p>
-          </Reveal>
+      <div className="flex flex-col gap-5 py-8 lg:flex-row lg:items-center lg:gap-0 lg:py-0">
+        <p className="kicker shrink-0 px-6 lg:px-12">Built at</p>
 
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:gap-x-12">
-            {companies.map((company, i) => (
-              <Reveal as="li" key={company} delay={i * 0.05}>
-                <span className="font-display text-lg font-semibold tracking-tight text-dim transition-colors duration-500 hover:text-text sm:text-xl">
-                  {company}
-                </span>
-              </Reveal>
+        <div
+          className="flex min-w-0 flex-1 overflow-hidden lg:py-10"
+          style={{
+            maskImage:
+              "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+          }}
+        >
+          <ul className="animate-marquee flex shrink-0 items-center gap-10 pr-10">
+            {items.map((company, i) => (
+              <li
+                key={`${company}-${i}`}
+                className="flex shrink-0 items-center gap-10 font-display text-lg font-semibold tracking-tight whitespace-nowrap text-dim sm:text-xl"
+              >
+                {company}
+                <span className="h-1 w-1 rounded-full bg-signal/50" />
+              </li>
             ))}
           </ul>
         </div>
