@@ -20,7 +20,7 @@ export function SpotlightCard({ children, className }: SpotlightCardProps) {
     <article
       onMouseMove={track}
       className={cn(
-        "group relative h-full overflow-hidden bg-card transition-colors duration-500 hover:bg-tint",
+        "group relative h-full overflow-hidden rounded-xl bg-card transition-colors duration-500 hover:bg-tint",
         className,
       )}
     >

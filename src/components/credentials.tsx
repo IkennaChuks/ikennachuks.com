@@ -34,7 +34,7 @@ export function Credentials() {
               </div>
             </Reveal>
 
-            <ul className="mt-6 space-y-px bg-line">
+            <ul className="mt-6 overflow-hidden rounded-xl space-y-px bg-line">
               {groups.map((group, i) => (
                 <Reveal as="li" key={group.issuer} delay={i * 0.05}>
                   <article className="bg-card px-5 py-5 transition-colors duration-500 hover:bg-tint">
@@ -72,7 +72,7 @@ export function Credentials() {
               </div>
             </Reveal>
 
-            <div className="mt-6 space-y-px bg-line">
+            <div className="mt-6 overflow-hidden rounded-xl space-y-px bg-line">
               {education.map((item, i) => (
                 <Reveal key={item.school} delay={i * 0.08}>
                   <article className="bg-card p-6">

@@ -4,7 +4,7 @@ import { navLinks, profile } from "@/lib/profile";
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-line bg-card/60">
+    <footer className="relative border-t border-line bg-card/60 print:hidden">
       <div className="shell py-14">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">

@@ -124,7 +124,7 @@ export default function PortfolioPage() {
             <p className="kicker">What is coming</p>
           </Reveal>
 
-          <div className="mt-8 grid gap-px bg-line md:grid-cols-2">
+          <div className="mt-8 grid gap-px overflow-hidden rounded-2xl bg-line md:grid-cols-2">
             {planned.map((item, i) => (
               <Reveal key={item.title} delay={(i % 2) * 0.08}>
                 <SpotlightCard className="p-8 lg:p-10">
@@ -144,7 +144,7 @@ export default function PortfolioPage() {
                     {item.themes.map((theme) => (
                       <li
                         key={theme}
-                        className="border border-line px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.12em] text-dim uppercase"
+                        className="rounded-md border border-line px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.12em] text-dim uppercase"
                       >
                         {theme}
                       </li>

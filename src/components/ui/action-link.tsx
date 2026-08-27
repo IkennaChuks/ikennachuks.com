@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "ghost" | "signal";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 overflow-hidden px-6 py-3.5 font-mono text-[0.7rem] tracking-[0.16em] uppercase transition-all duration-300";
+  "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-lg px-6 py-3.5 font-mono text-[0.7rem] tracking-[0.16em] uppercase transition-all duration-300";
 
 const variants: Record<Variant, string> = {
   primary:

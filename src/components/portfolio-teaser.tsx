@@ -42,7 +42,7 @@ export function PortfolioTeaser() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-px bg-line md:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-line md:grid-cols-3">
           {placeholders.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.08}>
               <SpotlightCard className="min-h-64 p-8">

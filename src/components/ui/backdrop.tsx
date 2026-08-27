@@ -16,7 +16,7 @@ export function Backdrop() {
   const orbC = useTransform(progress, [0, 1], [0, -520]);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden print:hidden">
       <div className="absolute inset-0 bg-page" />
 
       <div

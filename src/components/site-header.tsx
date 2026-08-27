@@ -73,7 +73,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-90 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-90 print:hidden transition-all duration-500",
         scrolled
           ? "border-b border-line bg-page/80 backdrop-blur-xl"
           : "border-b border-transparent",
@@ -85,9 +85,9 @@ export function SiteHeader() {
           className="group flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="relative grid h-9 w-9 place-items-center border border-line bg-tint font-display text-sm font-bold tracking-tight text-signal transition-colors duration-300 group-hover:border-signal/50">
+          <span className="relative grid h-9 w-9 place-items-center rounded-lg border border-line bg-tint font-display text-sm font-bold tracking-tight text-signal transition-colors duration-300 group-hover:border-signal/50">
             {profile.initials}
-            <span className="absolute -right-px -bottom-px h-1.5 w-1.5 bg-signal" />
+            <span className="absolute -right-px -bottom-px h-1.5 w-1.5 rounded-sm bg-signal" />
           </span>
           <span className="hidden flex-col leading-none sm:flex">
             <span className="font-display text-sm font-semibold tracking-tight whitespace-nowrap text-text">
@@ -110,14 +110,14 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
-                  "group relative px-4 py-2 font-mono text-[0.7rem] tracking-[0.16em] whitespace-nowrap uppercase transition-colors duration-300",
+                  "group relative px-3 py-2 font-mono text-[0.65rem] tracking-[0.14em] whitespace-nowrap uppercase transition-colors duration-300",
                   isActive ? "text-signal" : "text-muted hover:text-text",
                 )}
               >
                 {link.label}
                 <span
                   className={cn(
-                    "absolute inset-x-4 -bottom-0.5 h-px bg-signal transition-transform duration-300",
+                    "absolute inset-x-3 -bottom-0.5 h-px bg-signal transition-transform duration-300",
                     isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                   )}
                 />
@@ -129,7 +129,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/#contact"
-            className="hidden items-center gap-2 border border-line bg-card px-5 py-2.5 font-mono text-[0.7rem] tracking-[0.16em] whitespace-nowrap uppercase transition-all duration-300 hover:border-signal/50 hover:bg-tint hover:text-signal sm:inline-flex"
+            className="hidden items-center gap-2 rounded-lg border border-line bg-card px-5 py-2.5 font-mono text-[0.7rem] tracking-[0.16em] whitespace-nowrap uppercase transition-all duration-300 hover:border-signal/50 hover:bg-tint hover:text-signal sm:inline-flex"
           >
             Let&apos;s talk
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -140,7 +140,7 @@ export function SiteHeader() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center border border-line bg-card text-text transition-colors duration-300 hover:border-signal/50 hover:text-signal xl:hidden"
+            className="grid h-10 w-10 place-items-center rounded-lg border border-line bg-card text-text transition-colors duration-300 hover:border-signal/50 hover:text-signal xl:hidden"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>

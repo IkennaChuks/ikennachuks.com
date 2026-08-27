@@ -91,7 +91,7 @@ export function Contact() {
             </div>
 
             <div className="lg:col-span-5">
-              <ul className="space-y-px bg-line">
+              <ul className="overflow-hidden rounded-xl space-y-px bg-line">
                 {channels.map((channel, i) => {
                   const Icon = channel.icon;
                   const content = (

@@ -135,11 +135,11 @@ export function DigitalTwin() {
           <div className="panel mt-14 overflow-hidden">
             <header className="flex items-center justify-between gap-4 border-b border-line px-5 py-4 sm:px-7">
               <div className="flex items-center gap-3">
-                <span className="relative grid h-10 w-10 place-items-center bg-signal font-display text-sm font-bold text-white">
+                <span className="relative grid h-10 w-10 place-items-center rounded-lg bg-signal font-display text-sm font-bold text-white">
                   {profile.initials}
                   <span
                     className={cn(
-                      "absolute -right-1 -bottom-1 h-2.5 w-2.5 border-2 border-card",
+                      "absolute -right-1 -bottom-1 h-2.5 w-2.5 rounded-full border-2 border-card",
                       streaming ? "animate-pulse-dot bg-ember" : "bg-signal",
                     )}
                   />
@@ -158,7 +158,7 @@ export function DigitalTwin() {
                 <button
                   type="button"
                   onClick={reset}
-                  className="flex items-center gap-2 border border-line px-3 py-2 font-mono text-[0.6rem] tracking-[0.16em] text-dim uppercase transition-colors duration-300 hover:border-signal/50 hover:text-signal"
+                  className="flex items-center gap-2 rounded-lg border border-line px-3 py-2 font-mono text-[0.6rem] tracking-[0.16em] text-dim uppercase transition-colors duration-300 hover:border-signal/50 hover:text-signal"
                 >
                   <RotateCcw className="h-3 w-3" />
                   <span className="hidden sm:inline">Reset</span>
@@ -185,13 +185,13 @@ export function DigitalTwin() {
               {messages.map((message) =>
                 message.role === "user" ? (
                   <div key={message.id} className="flex justify-end">
-                    <p className="max-w-[85%] border border-signal/25 bg-tint px-4 py-3 text-sm leading-relaxed text-text sm:text-base">
+                    <p className="max-w-[85%] rounded-xl border border-signal/25 bg-tint px-4 py-3 text-sm leading-relaxed text-text sm:text-base">
                       {message.content}
                     </p>
                   </div>
                 ) : (
                   <div key={message.id} className="flex gap-4">
-                    <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-signal font-mono text-[0.6rem] font-bold text-white">
+                    <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-md bg-signal font-mono text-[0.6rem] font-bold text-white">
                       {profile.initials}
                     </span>
                     <div className="max-w-2xl space-y-3 text-sm leading-relaxed text-muted sm:text-base">
@@ -230,7 +230,7 @@ export function DigitalTwin() {
                       <button
                         type="button"
                         onClick={() => send(suggestion)}
-                        className="border border-line bg-card px-3 py-2 text-left text-xs text-muted transition-colors duration-300 hover:border-signal/50 hover:bg-tint hover:text-signal"
+                      className="rounded-md border border-line bg-card px-3 py-2 text-left text-xs text-muted transition-colors duration-300 hover:border-signal/50 hover:bg-tint hover:text-signal"
                       >
                         {suggestion}
                       </button>
@@ -262,7 +262,7 @@ export function DigitalTwin() {
                   }}
                   placeholder="Ask about my career..."
                   maxLength={2000}
-                  className="max-h-32 min-h-11 flex-1 resize-none border border-line bg-card px-4 py-3 text-sm text-text placeholder:text-dim focus:border-signal/60 focus:outline-none"
+                  className="max-h-32 min-h-11 flex-1 resize-none rounded-lg border border-line bg-card px-4 py-3 text-sm text-text placeholder:text-dim focus:border-signal/60 focus:outline-none"
                 />
 
                 {streaming ? (
@@ -270,7 +270,7 @@ export function DigitalTwin() {
                     type="button"
                     onClick={() => abortRef.current?.abort()}
                     aria-label="Stop generating"
-                    className="grid h-11 w-11 shrink-0 place-items-center border border-line text-muted transition-colors duration-300 hover:border-signal/50 hover:text-signal"
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-line text-muted transition-colors duration-300 hover:border-signal/50 hover:text-signal"
                   >
                     <Square className="h-3.5 w-3.5" />
                   </button>
@@ -279,7 +279,7 @@ export function DigitalTwin() {
                     type="submit"
                     disabled={input.trim() === ""}
                     aria-label="Send question"
-                    className="grid h-11 w-11 shrink-0 place-items-center bg-signal text-white transition-all duration-300 hover:bg-text disabled:cursor-not-allowed disabled:bg-line disabled:text-dim"
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-signal text-white transition-all duration-300 hover:bg-text disabled:cursor-not-allowed disabled:bg-line disabled:text-dim"
                   >
                     <ArrowUp className="h-4 w-4" />
                   </button>

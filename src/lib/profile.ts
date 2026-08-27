@@ -413,5 +413,6 @@ export const navLinks = [
   { href: "/#journey", label: "Journey" },
   { href: "/#twin", label: "Digital Twin" },
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/quick-resume", label: "Quick Resume" },
   { href: "/#contact", label: "Contact" },
 ] as const;

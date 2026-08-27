@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* Surfaces: page is the canvas, card sits on it, tint is the hover state. */
-  --color-page: #f6f8fc;
-  --color-card: #ffffff;
-  --color-tint: #edf3ff;
-  --color-line: #d9e1ef;
+  /* Surfaces */
+  --color-page: #f6f3ed;
+  --color-card: #fffdf9;
+  --color-tint: #efe8dc;
+  --color-line: #e0d8cc;
 
-  /* Text: text for headings, muted for body copy, dim for small mono labels. */
-  --color-text: #08172e;
-  --color-muted: #445468;
-  --color-dim: #64748b;
+  /* Text */
+  --color-text: #1a2330;
+  --color-muted: #4f5968;
+  --color-dim: #7a7468;
 
-  /* Accents: signal is the primary brand blue, ember adds warmth. */
-  --color-signal: #1257ff;
-  --color-accent: #5b8cff;
-  --color-accent-deep: #0a3ac4;
-  --color-ember: #ff6a2c;
+  /* Accents: sapphire for structure, copper for warmth */
+  --color-signal: #1a4f8c;
+  --color-accent: #3d7ab5;
+  --color-accent-deep: #123a68;
+  --color-ember: #c45c26;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), var(--font-inter), sans-serif;
@@ -110,7 +110,7 @@
   :focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 6px;
   }
 
   h1,
@@ -133,12 +133,12 @@
     background: var(--color-page);
   }
   ::-webkit-scrollbar-thumb {
-    background: #b9c6da;
+    background: #cbbfae;
     border-radius: 999px;
     border: 2px solid var(--color-page);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #94a5c0;
+    background: #b3a48f;
   }
 }
 
@@ -181,6 +181,14 @@
   font-size: clamp(2.75rem, 9vw, 7.5rem);
 }
 
+@utility display-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.038em;
+  font-size: clamp(1.9rem, 5vw, 4.15rem);
+}
+
 @utility display-lg {
   font-family: var(--font-display);
   font-weight: 700;
@@ -206,10 +214,11 @@
 @utility panel {
   position: relative;
   border: 1px solid var(--color-line);
-  background-image: linear-gradient(160deg, #ffffff 0%, var(--color-page) 100%);
+  border-radius: 1rem;
+  background-image: linear-gradient(160deg, #fffdf9 0%, var(--color-page) 100%);
   box-shadow:
-    0 1px 2px rgb(8 23 46 / 0.04),
-    0 20px 50px -32px rgb(8 23 46 / 0.16);
+    0 1px 2px rgb(26 35 48 / 0.04),
+    0 18px 40px -28px rgb(26 35 48 / 0.18);
 }
 
 @utility hairline {
@@ -250,5 +259,32 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Resume sheet (ATS-safe, print-ready) ------------------------------------ */
+
+@utility resume-sheet {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: Calibri, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 10.75pt;
+  line-height: 1.38;
+}
+
+@media print {
+  @page {
+    margin: 0.55in 0.65in;
+    size: letter;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  .resume-sheet {
+    box-shadow: none !important;
+    border: none !important;
   }
 }

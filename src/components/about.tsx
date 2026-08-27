@@ -59,7 +59,7 @@ export function About() {
             <Reveal>
               <p className="kicker">Operating principles</p>
             </Reveal>
-            <ul className="mt-6 space-y-px bg-line">
+            <ul className="mt-6 overflow-hidden rounded-xl space-y-px bg-line">
               {principles.map((principle, i) => (
                 <Reveal as="li" key={principle.title} delay={0.06 * i}>
                   <div className="group relative bg-card p-6 transition-colors duration-500 hover:bg-tint">

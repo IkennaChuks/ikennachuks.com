@@ -8,7 +8,7 @@ import {
   summary,
 } from "./profile";
 
-function dossier() {
+export function careerDossier() {
   const roles = experience
     .map((position) => {
       const titles = position.roles
@@ -101,4 +101,4 @@ RULES
 - Stay on the subject of Ikenna's career, skills and experience. Politely redirect anything unrelated.
 
 DOSSIER
-${dossier()}`;
+${careerDossier()}`;

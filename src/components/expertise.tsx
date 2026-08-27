@@ -32,14 +32,14 @@ export function Expertise() {
           lede="Six disciplines that show up in every engagement, sharpened across banking, betting, commerce, big tech, health tech and consulting."
         />
 
-        <div className="mt-16 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-line sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((capability, i) => {
             const Icon = icons[capability.icon];
             return (
               <Reveal key={capability.title} delay={(i % 3) * 0.08}>
                 <SpotlightCard className="p-8">
                   <div className="flex items-center justify-between">
-                    <span className="grid h-11 w-11 place-items-center border border-line bg-tint text-signal transition-colors duration-500 group-hover:border-signal/50">
+                    <span className="grid h-11 w-11 place-items-center rounded-lg border border-line bg-tint text-signal transition-colors duration-500 group-hover:border-signal/50">
                       <Icon className="h-4.5 w-4.5" strokeWidth={1.6} />
                     </span>
                     <span className="font-mono text-[0.65rem] text-dim">
@@ -58,7 +58,7 @@ export function Expertise() {
                     {capability.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="border border-line px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.12em] text-dim uppercase transition-colors duration-500 group-hover:border-dim/40 group-hover:text-muted"
+                        className="rounded-md border border-line px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.12em] text-dim uppercase transition-colors duration-500 group-hover:border-dim/40 group-hover:text-muted"
                       >
                         {tag}
                       </li>
