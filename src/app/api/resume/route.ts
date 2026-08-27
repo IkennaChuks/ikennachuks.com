@@ -1,7 +1,9 @@
 import { extractJsonObject } from "@/lib/extract-json";
 import { fetchJobDescription } from "@/lib/fetch-job";
-import { resumeSystemPrompt } from "@/lib/resume-prompt";
-import { parseResumeDraft } from "@/lib/resume-types";
+import { textFromResumeFile } from "@/lib/extract-resume";
+import { profile } from "@/lib/profile";
+import { buildResumeSystemPrompt } from "@/lib/resume-prompt";
+import { parseResumeDraft, type ResumeDraft } from "@/lib/resume-types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -31,6 +33,44 @@ function readContent(payload: unknown): string {
   return "";
 }
 
+function withIkennaIdentity(draft: ResumeDraft): ResumeDraft {
+  return {
+    ...draft,
+    name: profile.name,
+    credential: profile.credential,
+    location: profile.location,
+    email: profile.email,
+    phone: profile.phone,
+    linkedin: profile.linkedin,
+    linkedinLabel: profile.linkedinLabel,
+  };
+}
+
+async function readForm(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  if (contentType.includes("multipart/form-data")) {
+    const form = await request.formData();
+    const url = typeof form.get("url") === "string" ? String(form.get("url")).trim() : "";
+    const description =
+      typeof form.get("description") === "string"
+        ? String(form.get("description")).trim()
+        : "";
+    const resume = form.get("resume");
+    return {
+      url,
+      description,
+      resume: resume instanceof File && resume.size > 0 ? resume : null,
+    };
+  }
+
+  const body = await request.json();
+  return {
+    url: typeof body?.url === "string" ? body.url.trim() : "",
+    description: typeof body?.description === "string" ? body.description.trim() : "",
+    resume: null,
+  };
+}
+
 export async function POST(request: Request) {
   const apiKey = process.env.OPENROUTER_API_KEY ?? process.env.OPENROUTER;
 
@@ -43,10 +83,12 @@ export async function POST(request: Request) {
 
   let url = "";
   let description = "";
+  let resumeFile: File | null = null;
   try {
-    const body = await request.json();
-    url = typeof body?.url === "string" ? body.url.trim() : "";
-    description = typeof body?.description === "string" ? body.description.trim() : "";
+    const parsed = await readForm(request);
+    url = parsed.url;
+    description = parsed.description;
+    resumeFile = parsed.resume;
   } catch {
     return Response.json({ error: "Invalid request." }, { status: 400 });
   }
@@ -56,6 +98,17 @@ export async function POST(request: Request) {
       { error: "Paste a job description or provide a posting URL." },
       { status: 400 },
     );
+  }
+
+  let uploadedResume = "";
+  if (resumeFile) {
+    try {
+      uploadedResume = await textFromResumeFile(resumeFile);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Could not read that resume.";
+      return Response.json({ error: message }, { status: 400 });
+    }
   }
 
   let jobText = description.slice(0, MAX_JD);
@@ -101,7 +154,10 @@ export async function POST(request: Request) {
         reasoning: { effort: "low" },
         provider: { sort: "throughput" },
         messages: [
-          { role: "system", content: resumeSystemPrompt },
+          {
+            role: "system",
+            content: buildResumeSystemPrompt(uploadedResume || undefined),
+          },
           {
             role: "user",
             content: `Draft the tailored resume JSON for this job posting:\n\n${jobText}`,
@@ -145,14 +201,19 @@ export async function POST(request: Request) {
   }
 
   try {
-    const draft = parseResumeDraft(extractJsonObject(content));
-    if (!draft) {
+    const parsed = parseResumeDraft(extractJsonObject(content));
+    if (!parsed) {
       return Response.json(
         { error: "The draft could not be parsed. Please try again." },
         { status: 502 },
       );
     }
-    return Response.json({ source, draft });
+    const draft = uploadedResume ? parsed : withIkennaIdentity(parsed);
+    return Response.json({
+      source,
+      owner: uploadedResume ? "upload" : "ikenna",
+      draft,
+    });
   } catch (error) {
     console.error("Resume JSON parse failed", error, content.slice(0, 400));
     return Response.json(

@@ -7,7 +7,7 @@ import { QuickResumeForm } from "@/components/quick-resume-form";
 export const metadata: Metadata = {
   title: "Quick Resume",
   description:
-    "Paste a job description or URL and get an ATS-ready resume drafted from Ikenna Chuks Okolo's CV.",
+    "Paste a job URL, optionally upload a resume, and download an ATS-ready PDF. Leave the resume empty to tailor Ikenna Chuks Okolo's CV.",
 };
 
 export default function QuickResumePage() {
@@ -36,9 +36,10 @@ export default function QuickResumePage() {
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              Drop in a posting URL or the full description. The draft is written from
-              the same CV as this site: real roles, dates and certifications, rewritten
-              so the posting&apos;s checklist is covered without inventing experience.
+              Add a job URL or paste the posting. Upload a resume to tailor that
+              person&apos;s CV. Skip the upload and the draft is written from
+              Ikenna&apos;s roles, dates and certifications. Download the result as an
+              ATS-safe PDF.
             </p>
           </Reveal>
         </div>

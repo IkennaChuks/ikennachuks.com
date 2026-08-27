@@ -1,18 +1,21 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
-import { Check, Copy, FileDown, Link2, LoaderCircle, Printer } from "lucide-react";
-import { profile } from "@/lib/profile";
+import { Check, Copy, FileDown, Link2, LoaderCircle, Upload, X } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { resumeFilename, resumeToPdf } from "@/lib/resume-pdf";
 import type { ResumeDraft } from "@/lib/resume-types";
 
 type Mode = "url" | "paste";
 
 function toPlainText(draft: ResumeDraft) {
+  const heading = draft.credential
+    ? `${draft.name}, ${draft.credential}`
+    : draft.name;
   const lines = [
-    `${profile.name}, ${profile.credential}`,
+    heading,
     draft.headline,
-    [profile.location, profile.email, profile.phone, profile.linkedinLabel]
+    [draft.location, draft.email, draft.phone, draft.linkedinLabel]
       .filter(Boolean)
       .join("  |  "),
     "",
@@ -63,13 +66,15 @@ function toPlainText(draft: ResumeDraft) {
 }
 
 export function QuickResumeForm() {
-  const [mode, setMode] = useState<Mode>("paste");
+  const [mode, setMode] = useState<Mode>("url");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [draft, setDraft] = useState<ResumeDraft | null>(null);
   const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const sheetRef = useRef<HTMLElement>(null);
 
   async function submit(event: FormEvent) {
@@ -81,13 +86,14 @@ export function QuickResumeForm() {
     setCopied(false);
 
     try {
+      const body = new FormData();
+      body.set("url", mode === "url" ? url : "");
+      body.set("description", description);
+      if (resumeFile) body.set("resume", resumeFile);
+
       const response = await fetch("/api/resume", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          url: mode === "url" ? url : "",
-          description,
-        }),
+        body,
       });
       const payload = (await response.json()) as {
         error?: string;
@@ -115,8 +121,32 @@ export function QuickResumeForm() {
     window.setTimeout(() => setCopied(false), 1800);
   }
 
+  async function downloadPdf() {
+    if (!draft || downloading) return;
+    setDownloading(true);
+    try {
+      const bytes = await resumeToPdf(draft);
+      const blob = new Blob([Uint8Array.from(bytes)], { type: "application/pdf" });
+      const href = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = href;
+      link.download = resumeFilename(draft);
+      link.click();
+      URL.revokeObjectURL(href);
+    } catch {
+      setError("Could not build the PDF. Try again.");
+    } finally {
+      setDownloading(false);
+    }
+  }
+
   const covered = draft?.checklist.filter((item) => item.covered).length ?? 0;
   const total = draft?.checklist.length ?? 0;
+  const displayName = draft
+    ? draft.credential
+      ? `${draft.name}, ${draft.credential}`
+      : draft.name
+    : "";
 
   return (
     <div className="space-y-12">
@@ -124,8 +154,8 @@ export function QuickResumeForm() {
         <div className="flex flex-wrap gap-2">
           {(
             [
-              ["paste", "Paste description"],
               ["url", "Job URL"],
+              ["paste", "Paste description"],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -169,11 +199,44 @@ export function QuickResumeForm() {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
             required={mode === "paste"}
-            rows={mode === "paste" ? 12 : 6}
+            rows={mode === "paste" ? 12 : 5}
             placeholder="Paste the full job description, including requirements and nice-to-haves."
             className="mt-3 w-full resize-y rounded-lg border border-line bg-card px-4 py-3 text-sm leading-relaxed text-text placeholder:text-dim focus:border-signal/60 focus:outline-none"
           />
         </label>
+
+        <div className="mt-6">
+          <span className="kicker">Your resume (optional)</span>
+          {resumeFile ? (
+            <div className="mt-3 flex items-center justify-between gap-3 rounded-lg border border-line bg-card px-4 py-3">
+              <p className="truncate text-sm text-text">{resumeFile.name}</p>
+              <button
+                type="button"
+                onClick={() => setResumeFile(null)}
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-muted transition-colors hover:text-text"
+                aria-label="Remove resume"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          ) : (
+            <label className="mt-3 flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-line bg-card px-4 py-4 text-sm text-muted transition-colors hover:border-signal/50 hover:text-text">
+              <Upload className="h-4 w-4 shrink-0 text-signal" />
+              <span>
+                Upload a PDF or .txt resume.
+              </span>
+              <input
+                type="file"
+                accept=".pdf,.txt,application/pdf,text/plain"
+                className="sr-only"
+                onChange={(event) => {
+                  setResumeFile(event.target.files?.[0] ?? null);
+                  event.target.value = "";
+                }}
+              />
+            </label>
+          )}
+        </div>
 
         {error ? (
           <p className="mt-5 rounded-lg border border-ember/30 bg-ember/8 px-4 py-3 text-sm text-ember">
@@ -192,11 +255,14 @@ export function QuickResumeForm() {
             ) : (
               <FileDown className="h-3.5 w-3.5" />
             )}
-            {busy ? "Drafting against your CV" : "Draft resume"}
+            {busy ? "Drafting ATS resume" : "Draft resume"}
           </button>
           {busy ? (
             <p className="max-w-sm text-xs leading-relaxed text-muted">
-              Reading the posting and rewriting bullets from your real roles. This usually takes under a minute.
+              {resumeFile
+                ? "Reading the posting against the resume you uploaded."
+                : "Reading the posting against Ikenna's CV."}{" "}
+              This usually takes under a minute.
             </p>
           ) : null}
         </div>
@@ -246,11 +312,16 @@ export function QuickResumeForm() {
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                onClick={() => window.print()}
-                className="inline-flex items-center gap-2 rounded-lg border border-line bg-card px-4 py-2.5 font-mono text-[0.65rem] tracking-[0.16em] text-text uppercase transition-colors duration-300 hover:border-signal/50 hover:text-signal"
+                onClick={downloadPdf}
+                disabled={downloading}
+                className="inline-flex items-center gap-2 rounded-lg bg-signal px-4 py-2.5 font-mono text-[0.65rem] tracking-[0.16em] text-white uppercase transition-colors duration-300 hover:bg-text disabled:bg-line disabled:text-dim"
               >
-                <Printer className="h-3.5 w-3.5" />
-                Print / PDF
+                {downloading ? (
+                  <LoaderCircle className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <FileDown className="h-3.5 w-3.5" />
+                )}
+                Download PDF
               </button>
               <button
                 type="button"
@@ -270,17 +341,24 @@ export function QuickResumeForm() {
           >
             <header className="border-b border-neutral-300 pb-3 text-center">
               <h2 className="font-serif text-[1.65rem] font-semibold tracking-tight text-neutral-900">
-                {profile.name}, {profile.credential}
+                {displayName}
               </h2>
               <p className="mt-1 text-[11pt] text-neutral-800">{draft.headline}</p>
               <p className="mt-1.5 text-[9.5pt] text-neutral-700">
-                {profile.location} · {profile.email} · {profile.phone}
+                {[draft.location, draft.email, draft.phone]
+                  .filter(Boolean)
+                  .join(" · ")}
               </p>
-              <p className="mt-0.5 text-[9.5pt] text-neutral-700">
-                <a href={profile.linkedin} className="text-neutral-700 underline-offset-2">
-                  {profile.linkedinLabel}
-                </a>
-              </p>
+              {draft.linkedinLabel || draft.linkedin ? (
+                <p className="mt-0.5 text-[9.5pt] text-neutral-700">
+                  <a
+                    href={draft.linkedin || undefined}
+                    className="text-neutral-700 underline-offset-2"
+                  >
+                    {draft.linkedinLabel || draft.linkedin}
+                  </a>
+                </p>
+              ) : null}
             </header>
 
             <section className="mt-4">
@@ -385,7 +463,7 @@ export function QuickResumeForm() {
       ) : (
         <p className="print:hidden flex items-start gap-2 text-sm text-muted">
           <Link2 className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
-          Drafts stay in this browser tab. Nothing is saved. Dates, employers and certifications come from the CV on this site. Gaps stay visible in the match check.
+          Upload your own CV to tailor it. If you skip the upload, the draft uses Ikenna&apos;s CV. Nothing is saved in this browser tab.
         </p>
       )}
     </div>
