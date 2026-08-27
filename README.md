@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ikenna Chuks Okolo — Personal Site
 
-## Getting Started
+Professional site covering about, career journey, credentials and portfolio, plus a
+"Digital Twin" AI chat that answers questions about his career. Next.js App Router,
+Tailwind CSS v4, Motion.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Create `.env` in the project root:
+
+```
+OPENROUTER="sk-or-v1-..."
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000
 
-## Learn More
+Live site: https://ikennachuks.com
 
-To learn more about Next.js, take a look at the following resources:
+## Digital Twin
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`POST /api/twin` streams plain text from OpenRouter using `openai/gpt-oss-120b`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- The system prompt is generated from `src/lib/profile.ts` by `src/lib/twin-prompt.ts`,
+  so the twin only knows what the site itself publishes.
+- The API key is read server-side only and never reaches the browser.
+- `gpt-oss-120b` is a reasoning model: it emits reasoning tokens before any content,
+  so `max_tokens` has to cover both and only `delta.content` is forwarded to the client.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run dev` — dev server
+- `npm run build` — production build
+- `npm start` — serve the production build
+- `npm run lint` — ESLint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Structure
+
+- `src/lib/profile.ts` — all site content (bio, roles, certifications, contact)
+- `src/lib/twin-prompt.ts` — dossier and rules given to the digital twin
+- `src/app/api/twin` — OpenRouter streaming endpoint
+- `src/components` — page sections
+- `src/components/ui` — shared primitives
+- `src/app/globals.css` — design tokens and utilities
+
+Content edits should go in `src/lib/profile.ts`; the twin picks them up automatically.
