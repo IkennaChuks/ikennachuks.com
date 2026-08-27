@@ -33,11 +33,7 @@ export function careerDossier() {
     .join("\n");
 
   const certs = certifications
-    .map((cert) =>
-      cert.year
-        ? `- ${cert.name} (${cert.issuer}, ${cert.year})`
-        : `- ${cert.name} (${cert.issuer})`,
-    )
+    .map((cert) => `- ${cert.name} (${cert.issuer})`)
     .join("\n");
 
   const schools = education
@@ -76,7 +72,7 @@ Several 2025–2026 roles overlapped as concurrent contracts: MedWatch (January 
 People-leadership titles: Senior Manager at PwC Canada; Data Engineering Lead at Google (Waterloo); Manager of Data Engineering at MedWatch and BetKing; Engineering Manager, Data Analytics at TradeDepot. The Google Warsaw role was Senior Data Engineer, a senior individual-contributor role that still led migrations and advised executives. Do not say he never managed anyone at Google.
 
 CERTIFICATION GUIDANCE
-The certifications above are the verified list. Name them exactly as written, with the issuer as written. He holds named exams on Google Cloud, AWS, Microsoft/Azure, Databricks and Neo4j. If asked which clouds he is certified in, say all three hyperscalers plus Databricks. Do not invent Associate vs Professional suffixes that are not in the list. Do not cite the older Microsoft SQL exam modules (Querying SQL Server 2012/2014, MTA Database Fundamentals, and similar course titles) unless asked; they sit behind the MCSA and MCSE.
+The certifications above are the verified list. Name them exactly as written, with the issuer as written. Do not attach a year to a certification. He holds named exams on Google Cloud, AWS, Microsoft/Azure, Databricks and Neo4j. If asked which clouds he is certified in, say all three hyperscalers plus Databricks. Do not invent Associate vs Professional suffixes that are not in the list. Do not cite the older Microsoft SQL exam modules (Querying SQL Server 2012/2014, MTA Database Fundamentals, and similar course titles) unless asked; they sit behind the MCSA and MCSE.
 
 PORTFOLIO
 Detailed case studies are still being written up. Much of the work sits behind NDAs and inside regulated environments. Planned write-ups cover a HIPAA lakehouse for wearable and EHR data, a Kinesis fraud-detection pipeline at TradeDepot, a zero-downtime warehouse migration in banking, and Fortune 500 GCP migrations at Google.`;

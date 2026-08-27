@@ -45,16 +45,9 @@ export function Credentials() {
                       {group.items.map((cert) => (
                         <li
                           key={cert.name}
-                          className="flex items-baseline justify-between gap-4"
+                          className="font-display text-sm font-medium text-text sm:text-base"
                         >
-                          <span className="font-display text-sm font-medium text-text sm:text-base">
-                            {cert.name}
-                          </span>
-                          {cert.year ? (
-                            <span className="shrink-0 font-mono text-[0.62rem] tracking-[0.14em] text-dim">
-                              {cert.year}
-                            </span>
-                          ) : null}
+                          {cert.name}
                         </li>
                       ))}
                     </ul>

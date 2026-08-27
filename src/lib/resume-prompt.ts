@@ -12,6 +12,7 @@ HARD RULES
 - Never invent employers, titles, dates, locations, metrics, clients, tools, or certifications.
 - Never attach a tool, cloud, or metric to an employer unless that employer's own highlights already mention it.
 - Never upgrade a credential. Use certification names exactly as listed.
+- Do not include a year on any certification.
 - Keep every company name and date range exactly as in the dossier.
 - If a job requirement is not in the dossier, mark it uncovered. Do not paper over the gap.
 - Several 2025–2026 roles overlapped as concurrent contracts. Keep those dates. Do not flatten them into a fake sequence.
@@ -54,7 +55,7 @@ Return one JSON object only. No markdown. No commentary. Schema:
     "bullets": ["string"]
   }],
   "education": [{ "qualification": "string", "school": "string", "place": "string", "period": "string" }],
-  "certifications": [{ "name": "string", "issuer": "string", "year": "optional string" }],
+  "certifications": [{ "name": "string", "issuer": "string" }],
   "checklist": [{ "item": "string", "covered": true, "evidence": "short proof or empty if not covered" }],
   "notes": "plain-English gaps the candidate should know about, or empty string"
 }

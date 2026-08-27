@@ -26,7 +26,6 @@ export type ResumeEducation = {
 export type ResumeCertification = {
   name: string;
   issuer: string;
-  year?: string;
 };
 
 export type ResumeCheckItem = {
@@ -134,8 +133,7 @@ export function parseResumeDraft(value: unknown): ResumeDraft | null {
         const name = asString(item.name);
         const issuer = asString(item.issuer);
         if (name === "") return [];
-        const year = asString(item.year);
-        return year ? [{ name, issuer, year }] : [{ name, issuer }];
+        return [{ name, issuer }];
       })
     : [];
 

@@ -14,7 +14,6 @@ const sectionIds = [
   "journey",
   "twin",
   "credentials",
-  "portfolio",
   "contact",
 ];
 

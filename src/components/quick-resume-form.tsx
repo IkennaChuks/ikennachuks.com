@@ -55,11 +55,7 @@ function toPlainText(draft: ResumeDraft) {
   if (draft.certifications.length > 0) {
     lines.push("", "CERTIFICATIONS");
     for (const cert of draft.certifications) {
-      lines.push(
-        cert.year
-          ? `${cert.name}, ${cert.issuer} (${cert.year})`
-          : `${cert.name}, ${cert.issuer}`,
-      );
+      lines.push(`${cert.name}, ${cert.issuer}`);
     }
   }
 
@@ -379,7 +375,6 @@ export function QuickResumeForm() {
                   {draft.certifications.map((cert) => (
                     <li key={`${cert.name}-${cert.issuer}`}>
                       {cert.name}, {cert.issuer}
-                      {cert.year ? ` (${cert.year})` : ""}
                     </li>
                   ))}
                 </ul>

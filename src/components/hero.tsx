@@ -25,12 +25,6 @@ export function Hero() {
         <div className="grid items-end gap-14 xl:grid-cols-12 xl:gap-10">
           <div className="xl:col-span-7">
             <motion.div {...rise(0)} className="flex flex-wrap items-center gap-x-5 gap-y-3">
-              <span className="flex items-center gap-2.5 rounded-full border border-line bg-card px-3 py-1.5 shadow-[0_1px_2px_rgb(26_35_48_/_0.04)]">
-                <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-signal" />
-                <span className="font-mono text-[0.65rem] tracking-[0.18em] text-muted uppercase">
-                  Open to select advisory work
-                </span>
-              </span>
               <span className="flex items-center gap-1.5 font-mono text-[0.65rem] tracking-[0.18em] text-dim uppercase">
                 <MapPin className="h-3 w-3" />
                 {profile.location}

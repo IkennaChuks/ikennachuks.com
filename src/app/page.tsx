@@ -6,7 +6,6 @@ import { Marquee } from "@/components/ui/marquee";
 import { Journey } from "@/components/journey";
 import { DigitalTwin } from "@/components/digital-twin";
 import { Credentials } from "@/components/credentials";
-import { PortfolioTeaser } from "@/components/portfolio-teaser";
 import { Contact } from "@/components/contact";
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
       <Journey />
       <DigitalTwin />
       <Credentials />
-      <PortfolioTeaser />
       <Contact />
     </>
   );
