@@ -163,5 +163,5 @@ export function resumeFilename(draft: ResumeDraft) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
-  return `${base || "resume"}-ats.pdf`;
+  return `${base || "resume"}.pdf`;
 }
